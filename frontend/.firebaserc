@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "desta-team-4": {
+      "hosting": {
+        "desta-Project": [
+          "desta-team-4"
+        ]
+      }
+    }
+  }
+}
