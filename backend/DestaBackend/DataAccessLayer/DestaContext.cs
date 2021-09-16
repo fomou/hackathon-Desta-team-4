@@ -25,5 +25,27 @@ namespace DestaBackend.DataAccessLayer
         public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<TagType> TagType { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserFeed> UserFeed { get; set; }
+        public virtual DbSet<UserTag> UserTag { get; set; }
+        public virtual DbSet<Announce> Announce { get; set; }
+        
+        public virtual DbSet<AnnounceTag> AnnounceTag { get; set; }
+        
+        public virtual DbSet<ChatMessage> ChatMessage { get; set; }
+        
+        public virtual DbSet<ChatData> ChatData { get; set; }
+        
+        public virtual DbSet<Like> Like { get; set; }
+        
+        public virtual DbSet<Post> Post{ get; set; }
+        public virtual DbSet<PostTag> PostTag { get; set; }
+        public virtual DbSet<PostComment> PostComment { get; set; }
+        public virtual DbSet<UserOAuth> UserOAuth { get; set; }
+        public virtual DbSet<OAuthProvider> OAuthProvider { get; set; }
+        
+
+
+
+
     }
 }
