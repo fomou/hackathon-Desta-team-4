@@ -8,11 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
+import { LogginComponent } from './loggin/loggin.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LogginComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
