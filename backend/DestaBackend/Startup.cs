@@ -43,9 +43,9 @@ namespace DestaBackend
                 .AddEnvironmentVariables()
                 .Build();
 
-            var connectionString = configuration.GetConnectionString("DestaDatabase");
+            var connectionString = configuration.GetConnectionString("DestaNationConnectDatabase");
 
-            services.AddDbContext<DestaContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<DestaNationConnectContext>(options => options.UseSqlServer(connectionString));
 
             services.AddControllers();
 
@@ -121,7 +121,7 @@ namespace DestaBackend
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DestaBackend v1"));
             }
 
-            app.ApplyMigration<DestaContext>();
+            app.ApplyMigration<DestaNationConnectContext>();
 
             app.UseHttpsRedirection();
 

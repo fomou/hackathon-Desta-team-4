@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace DestaBackend.DataAccessLayer
 {
-    public class DestaContext : DbContext
+    public class DestaNationConnectContext : DbContext
     {
-        protected static readonly ILog Logger = LogManager.GetLogger(typeof(DestaContext));
+        protected static readonly ILog Logger = LogManager.GetLogger(typeof(DestaNationConnectContext));
 
-        public DestaContext(DbContextOptions<DestaContext> options)
+        public DestaNationConnectContext(DbContextOptions<DestaNationConnectContext> options)
         : base(options)
         {
         }

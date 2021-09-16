@@ -14,9 +14,9 @@ namespace DestaBackend.Controllers
     [ApiController]
     public class BusinessesController : ControllerBase
     {
-        private readonly DestaContext _context;
+        private readonly DestaNationConnectContext _context;
 
-        public BusinessesController(DestaContext context)
+        public BusinessesController(DestaNationConnectContext context)
         {
             _context = context;
         }
