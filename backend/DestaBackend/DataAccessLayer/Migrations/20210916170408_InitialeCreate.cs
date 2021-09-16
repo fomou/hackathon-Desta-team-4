@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DestaBackend.Migrations
+namespace DestaBackend.DataAccessLayer.Migrations
 {
     public partial class InitialeCreate : Migration
     {

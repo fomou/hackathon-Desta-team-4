@@ -4,16 +4,14 @@ using DestaBackend.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DestaBackend.Migrations
+namespace DestaBackend.DataAccessLayer.Migrations
 {
     [DbContext(typeof(DestaContext))]
-    [Migration("20210916060610_InitialeCreate")]
-    partial class InitialeCreate
+    partial class DestaContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
