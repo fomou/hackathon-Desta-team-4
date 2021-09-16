@@ -7,11 +7,8 @@ namespace DestaBackend.DataAccessLayer.Models
 {
     public class OAuthProvider
     {
-        public long ID { get; set; }
-        public string Facebook { get; set; }
-        public string Google { get; set; }
-        public string Apple { get; set; }
+        public long Id { get; set; }
         public string Key { get; set; }
-
+        public string Name { get; set; }
     }
 }

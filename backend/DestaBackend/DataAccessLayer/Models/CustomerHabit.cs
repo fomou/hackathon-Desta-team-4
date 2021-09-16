@@ -14,7 +14,7 @@ namespace DestaBackend.DataAccessLayer.Models
         public string Action { get; set; } //cliked-link, Liked post ....
         public string Comment { get; set; }
 
-        public Customer Customer { get; set; }
-        public Business Business { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Business Business { get; set; }
     }
 }

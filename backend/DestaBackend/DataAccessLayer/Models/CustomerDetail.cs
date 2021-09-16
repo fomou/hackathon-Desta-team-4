@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer.Models
 {
-    public class CustomerFavoriteBusiness
+    public class CustomerDetail
     {
-        public long Id { get; set; }
+        [Key]
+        [ForeignKey("Customer")]
+        [Required]
         public long CustomerId { get; set; }
-        public long BusinessId { get; set; }
         public DateTime CreationDate { get; set; }
-        public string Notes { get; set; }
-        public string Comment { get; set; }
 
         public virtual Customer Customer { get; set; }
-        public virtual Business Business { get; set; }
     }
 }

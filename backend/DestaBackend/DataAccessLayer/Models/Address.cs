@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer.Models
 {
-    public class Adress
+    public class Address
     {
         public long Id { get; set; }
         public long UserId { get; set; }

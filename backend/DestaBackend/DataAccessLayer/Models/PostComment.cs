@@ -7,13 +7,13 @@ namespace DestaBackend.DataAccessLayer.Models
 {
     public class PostComment
     {
-        public long PostID { get; set; }
-        public long BusinessID { get; set; }
+        public long Id { get; set; }
+        public long PostId { get; set; }
+        public long BusinessId { get; set; }
         public string Comment { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreationDate { get; set; }
 
-        public Business Business { get; set; }
-        public Post Post { get; set; }
-
+        public virtual Post Post { get; set; }
+        public virtual Business Business { get; set; }
     }
 }

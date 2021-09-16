@@ -14,7 +14,7 @@ namespace DestaBackend.DataAccessLayer.Models
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
 
-        public TagType TagType { get; set; }
-        public User Author { get; set; }
+        public virtual TagType TagType { get; set; }
+        public virtual User Author { get; set; }
     }
 }

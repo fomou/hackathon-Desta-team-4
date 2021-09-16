@@ -13,6 +13,7 @@ namespace DestaBackend.DataAccessLayer.Models
         public string Message { get; set; }
         public DateTime Time { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
+        public virtual IList<ChatData> ChatDatas { get; set; } = new List<ChatData>();
     }
 }

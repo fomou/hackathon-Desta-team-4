@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer.Models
 {
-    public class PostTag
+    public class TagPurpose
     {
         public long Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }   //Descriptive | Interest
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
-
-        public virtual IList<Post> Posts { get; set; } = new List<Post>();
     }
 }

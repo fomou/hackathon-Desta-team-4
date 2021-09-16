@@ -7,8 +7,11 @@ namespace DestaBackend.DataAccessLayer.Models
 {
     public class ChatData
     {
-        public long ID { get; set; }
-        public long ChatMessageID { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public long Id { get; set; }
+        public long ChatMessageId { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public DateTime CreationDate { get; set; }
+        public virtual ChatMessage ChatMessage { get; set; }
     }
 }

@@ -13,14 +13,17 @@ namespace DestaBackend.DataAccessLayer.Models
         [ForeignKey("User")]
         [Required]
         public long UserId { get; set; }
-        public long PartnerBusinessUserId { get; set; }
+        [ForeignKey("PartnerBusiness")]
+        public long? PartnerBusinessId { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime PartnerBusinessStartDate { get; set; }
 
-        public string Facebook { get; set; }
-        public string Google { get; set; }
-        public string LinkedIn { get; set; }
+        public string MarketingName { get; set; }
+        public string Teasing { get; set; }
+        public string AboutUs { get; set; }
 
-        public Business PartnerBusiness { get; set; }
+        [ForeignKey("PartnerBusinessId")]
+        public virtual Business PartnerBusiness { get; set; }
+        public virtual IList<PostComment> PostComments { get; set; } = new List<PostComment>();
     }
 }

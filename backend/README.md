@@ -1,2 +1,3 @@
 
-Add-Migration InitialeCreate -Context DestaContext -Project DestaBackend -StartupProject DestaBackend -o DataAccessLayer/Migrations -Verbose
+Add-Migration InitialeCreate -Context DestaContext -Project DestaBackend -StartupProject DestaBackend --output-dir DataAccessLayer/Migrations -Verbose
+dotnet ef migrations add InitialeCreate -Context DestaContext -Project DestaBackend -StartupProject DestaBackend --output-dir DataAccessLayer/Migrations -Verbose

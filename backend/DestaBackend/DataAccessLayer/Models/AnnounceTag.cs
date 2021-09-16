@@ -7,12 +7,14 @@ namespace DestaBackend.DataAccessLayer.Models
 {
     public class AnnounceTag
     {
-        public long TagID { get; set; }
-        public long AnnounceID { get; set; }
-        public long AuthorID { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public long Id { get; set; }
+        public long TagId { get; set; }
+        public long AnnounceId { get; set; }
+        public long AuthorId { get; set; }
+        public DateTime CreationDate { get; set; }
 
-        public Announce Announce { get; set; }
-        public Tag Tag { get; set; }
+        public virtual Announce Announce { get; set; }
+        public virtual Tag Tag { get; set; }
+        public virtual User Author { get; set; }
     }
 }

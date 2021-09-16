@@ -7,10 +7,10 @@ namespace DestaBackend.DataAccessLayer.Models
 {
     public class UserOAuth
     {
-        public long OAuthProviderID { get; set; }
-        public long UserID { get; set; }
+        public long Id { get; set; }
+        public long UserId { get; set; }
+        public long OAuthProviderId { get; set; }
 
-        public OAuthProvider OAuthProvider { get; set; }
-
+        public virtual OAuthProvider OAuthProvider { get; set; }
     }
 }
