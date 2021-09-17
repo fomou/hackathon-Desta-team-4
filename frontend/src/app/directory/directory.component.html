@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="h2">Businesses around you</p>
+          <p class="h6" style="color: chocolate;">253 results</p>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group rounded">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+              aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <button class="btn btn-outline-light"  type="button">
+           <img src="../../assets/tages.svg" alt="">
+          </button>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-outline-light">
+           radius
+          </button>
+        </div>
+       <div class="col-sm-2">
+          <button class=" btn btn-outline-light">
+           <img src="../../assets/more.svg" alt="">
+          </button>
+       </div>
+       <div class="col-sm-2">
+        <button class=" btn btn-outline-light">
+         <img src="../../assets/more.svg" alt="">
+        </button>
+      </div>
+      <hr class="mt-3 mb-3"/>
+      <div class="row" *ngFor="let business of businesses">
+        <hr class="mt-3 mb-3"/>
+        <div class="col-sm-4">
+          <img [src]="business.src">
+        </div>
+        <div class="col-sm-8">
+          <div class="row align-items-start">
+          <p class="h2">{{business.name}}</p>
+          </div>
+          <div class="row align-items-center">
+          <p class="h4">{{business.adress}}</p>
+          <div class="d-flex">
+            <img src="../../assets/globe.svg" alt="">
+            <a [href]="business.site" class="h4">{{business.site}}</a>
+          </div>
+          <div>
+          <p class="h4">{{business.desciption}}
+          </div>
+          </div>
+          <div class="row align-items-end">
+            <div class="col-sm-8 d-flex">
+              <div class="col-sm-4">
+                <img class="" src="../../assets/facebook.svg">
+              </div>
+              <div class="col-sm-4">
+              <img  src="../../assets/instagram.svg">
+            </div>
+            <div class="col-sm-4">
+              <img class="col-sm-4" src="../../assets/linkedin.svg">
+            </div>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-primary position-relative">
+               connect with us
+                <img src="../../assets/question.svg" class="position-absolute top-0 start-100 translate-middle p-2  rounded-circle">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-3 mb-3"/>
+    </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=1950%20St-Antoine%20W.%20Montreal,%20QC,%20H3J%201A5&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+          </iframe><a href="https://www.whatismyip-address.com">
+          </a>
+          <br>
+          <style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>
+          <a href="https://www.embedgooglemap.net">google map api for website
+          </a>
+          <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
