@@ -1,53 +1,58 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DestaBackend.DataAccessLayer;
 using DestaBackend.DataAccessLayer.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace DestaBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class TagController : ControllerBase
     {
         private readonly DestaContext _context;
 
-        public PostController(DestaContext context)
+        public TagController(DestaContext context)
         {
             _context = context;
         }
-        // GET: api/<PostController>
-        [HttpGet]
-        public async Task<ActionResult<Post>> GetPost(long id)
-        {
-            var post = await _context.Post.FindAsync(id);
 
-            if (post == null)
+        // GET: api/Tag
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Tag>>> GetTag()
+        {
+            return await _context.Tag.ToListAsync();
+        }
+
+        // GET: api/Tag/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Tag>> GetTag(long id)
+        {
+            var tag = await _context.Tag.FindAsync(id);
+
+            if (tag == null)
             {
                 return NotFound();
             }
 
-            return post;
+            return tag;
         }
 
-
-       
+        // PUT: api/Tag/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPost(long id, Post post)
+        public async Task<IActionResult> PutTag(long id, Tag tag)
         {
-            if (id != post.Id)
+            if (id != tag.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(post).State = EntityState.Modified;
-
+            _context.Entry(tag).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +60,7 @@ namespace DestaBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PostExists(id))
+                if (!TagExists(id))
                 {
                     return NotFound();
                 }
@@ -68,42 +73,36 @@ namespace DestaBackend.Controllers
             return NoContent();
         }
 
-        // POST: api/Posts
+        // POST: api/Tag
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Post>> Postpost(Post post)
+        public async Task<ActionResult<Tag>> PostTag(Tag tag)
         {
-            _context.Post.Add(post);
+            _context.Tag.Add(tag);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPost", new { id = post.Id }, post);
+            return CreatedAtAction("GetTag", new { id = tag.Id }, tag);
         }
 
-
-
-       
-
-
-        // DELETE: api/post/5
+        // DELETE: api/Tag/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePost(long id)
+        public async Task<IActionResult> DeleteTag(long id)
         {
-            var post = await _context.Post.FindAsync(id);
-            if (post == null)
+            var tag = await _context.Tag.FindAsync(id);
+            if (tag == null)
             {
                 return NotFound();
             }
 
-            _context.Post.Remove(post);
+            _context.Tag.Remove(tag);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-
-        private bool PostExists(long id)
+        private bool TagExists(long id)
         {
-            return _context.Post.Any(e => e.Id == id);
+            return _context.Tag.Any(e => e.Id == id);
         }
     }
 }

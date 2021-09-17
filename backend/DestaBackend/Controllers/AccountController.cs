@@ -1,4 +1,5 @@
-﻿using DestaBackend.DTO;
+﻿using DestaBackend.DataAccessLayer;
+using DestaBackend.DTO;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,16 @@ namespace DestaBackend.Controllers
     [Produces("application/json")]
     public class AccountController : ControllerBase
     {
+
         //Logger
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AccountController));
+
+        private readonly DestaContext _context;
+
+        public AccountController(DestaContext context)
+        {
+            _context = context;
+        }
 
         // POST: api/Account/Login
         [HttpPost("Login")]
