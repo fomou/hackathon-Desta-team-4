@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer
 {
-    public static class MigrationBuilder
+    public static class DestaMigrationBuilder
     {
-
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(MigrationBuilder));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DestaMigrationBuilder));
 
         public static void ApplyMigration<DbContextType>(this IApplicationBuilder application)
         {

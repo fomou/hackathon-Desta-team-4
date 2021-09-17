@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer.Models
 {
-    public class CustomerHabit
+    public class PostComment
     {
         public long Id { get; set; }
-        public long CustomerId { get; set; }
+        public long PostId { get; set; }
         public long BusinessId { get; set; }
-        public DateTime DateOfAction { get; set; }
-        public string Action { get; set; } //cliked-link, Liked post ....
         public string Comment { get; set; }
+        public DateTime CreationDate { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual Post Post { get; set; }
         public virtual Business Business { get; set; }
     }
 }

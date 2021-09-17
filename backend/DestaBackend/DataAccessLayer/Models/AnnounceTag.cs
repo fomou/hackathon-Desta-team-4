@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer.Models
 {
-    public class UserTag
+    public class AnnounceTag
     {
         public long Id { get; set; }
-        public long UserId { get; set; }
         public long TagId { get; set; }
-        public long TagPurposeId { get; set; }
+        public long AnnounceId { get; set; }
+        public long AuthorId { get; set; }
         public DateTime CreationDate { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual Announce Announce { get; set; }
         public virtual Tag Tag { get; set; }
-        public virtual TagPurpose TagPurpose { get; set; }
+        public virtual User Author { get; set; }
     }
 }

@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace DestaBackend.DataAccessLayer.Models
 {
-    public class UserTag
+    public class UserProfile
     {
-        public long Id { get; set; }
+        [Key]
+        [ForeignKey("User")]
+        [Required]
         public long UserId { get; set; }
-        public long TagId { get; set; }
-        public long TagPurposeId { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Fax { get; set; }
         public DateTime CreationDate { get; set; }
 
         public virtual User User { get; set; }
-        public virtual Tag Tag { get; set; }
-        public virtual TagPurpose TagPurpose { get; set; }
     }
 }
