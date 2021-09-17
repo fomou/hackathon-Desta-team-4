@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DestaBackend.DataAccessLayer.Models
+namespace DestaNationConnect.DataAccessLayer.Models
 {
     public class User
     {
@@ -14,6 +14,7 @@ namespace DestaBackend.DataAccessLayer.Models
         public string Password { get; set; }
         public string AccessCode { get; set; }
         public DateTime CreationDate { get; set; }
+        public bool IsBIPOC { get; set; }
 
         public virtual IList<Address> Addresses { get; set; } = new List<Address>();
         public virtual IList<UserTag> UserTags { get; set; } = new List<UserTag>();

@@ -1,36 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DestaBackend.DataAccessLayer.Migrations
+namespace DestaNationConnect.DataAccessLayer.Migrations
 {
     public partial class InitialeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Business",
-                columns: table => new
-                {
-                    UserId = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PartnerBusinessId = table.Column<long>(type: "bigint", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PartnerBusinessStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MarketingName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Teasing = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AboutUs = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Business", x => x.UserId);
-                    table.ForeignKey(
-                        name: "FK_Business_Business_PartnerBusinessId",
-                        column: x => x.PartnerBusinessId,
-                        principalTable: "Business",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateTable(
                 name: "OAuthProvider",
                 columns: table => new
@@ -99,82 +75,12 @@ namespace DestaBackend.DataAccessLayer.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccessCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsBIPOC = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BusinessDetail",
-                columns: table => new
-                {
-                    BusinessId = table.Column<long>(type: "bigint", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Facebook = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Google = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LinkedIn = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BusinessDetail", x => x.BusinessId);
-                    table.ForeignKey(
-                        name: "FK_BusinessDetail_Business_BusinessId",
-                        column: x => x.BusinessId,
-                        principalTable: "Business",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserOAuth",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    OAuthProviderId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserOAuth", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserOAuth_OAuthProvider_OAuthProviderId",
-                        column: x => x.OAuthProviderId,
-                        principalTable: "OAuthProvider",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Post",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PostTagId = table.Column<long>(type: "bigint", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BusinessUserId = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Post", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Post_Business_BusinessUserId",
-                        column: x => x.BusinessUserId,
-                        principalTable: "Business",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Post_PostTag_PostTagId",
-                        column: x => x.PostTagId,
-                        principalTable: "PostTag",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -226,6 +132,36 @@ namespace DestaBackend.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Business",
+                columns: table => new
+                {
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    PartnerBusinessId = table.Column<long>(type: "bigint", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PartnerBusinessStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MarketingName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Teasing = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AboutUs = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Business", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Business_Business_PartnerBusinessId",
+                        column: x => x.PartnerBusinessId,
+                        principalTable: "Business",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Business_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ChatMessage",
                 columns: table => new
                 {
@@ -254,7 +190,7 @@ namespace DestaBackend.DataAccessLayer.Migrations
                 {
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     Age = table.Column<long>(type: "bigint", nullable: false),
-                    IsBIPOC = table.Column<bool>(type: "bit", nullable: false),
+                    Occupation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -321,6 +257,35 @@ namespace DestaBackend.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserOAuth",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    OAuthProviderId = table.Column<long>(type: "bigint", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailIsVerified = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserOAuth", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserOAuth_OAuthProvider_OAuthProviderId",
+                        column: x => x.OAuthProviderId,
+                        principalTable: "OAuthProvider",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserOAuth_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserProfile",
                 columns: table => new
                 {
@@ -342,57 +307,52 @@ namespace DestaBackend.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Like",
+                name: "BusinessDetail",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    PostId = table.Column<long>(type: "bigint", nullable: false),
+                    BusinessId = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Facebook = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Google = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LinkedIn = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Like", x => x.Id);
+                    table.PrimaryKey("PK_BusinessDetail", x => x.BusinessId);
                     table.ForeignKey(
-                        name: "FK_Like_Post_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Post",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Like_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
+                        name: "FK_BusinessDetail_Business_BusinessId",
+                        column: x => x.BusinessId,
+                        principalTable: "Business",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PostComment",
+                name: "Post",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PostId = table.Column<long>(type: "bigint", nullable: false),
-                    BusinessId = table.Column<long>(type: "bigint", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PostTagId = table.Column<long>(type: "bigint", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BusinessUserId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostComment", x => x.Id);
+                    table.PrimaryKey("PK_Post", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PostComment_Business_BusinessId",
-                        column: x => x.BusinessId,
+                        name: "FK_Post_Business_BusinessUserId",
+                        column: x => x.BusinessUserId,
                         principalTable: "Business",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PostComment_Post_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Post",
+                        name: "FK_Post_PostTag_PostTagId",
+                        column: x => x.PostTagId,
+                        principalTable: "PostTag",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -424,6 +384,7 @@ namespace DestaBackend.DataAccessLayer.Migrations
                 columns: table => new
                 {
                     CustomerId = table.Column<long>(type: "bigint", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -563,6 +524,62 @@ namespace DestaBackend.DataAccessLayer.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Like",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    PostId = table.Column<long>(type: "bigint", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Like", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Like_Post_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Post",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Like_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PostComment",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PostId = table.Column<long>(type: "bigint", nullable: false),
+                    BusinessId = table.Column<long>(type: "bigint", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostComment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PostComment_Business_BusinessId",
+                        column: x => x.BusinessId,
+                        principalTable: "Business",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PostComment_Post_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Post",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",
                 table: "Address",
@@ -672,6 +689,11 @@ namespace DestaBackend.DataAccessLayer.Migrations
                 name: "IX_UserOAuth_OAuthProviderId",
                 table: "UserOAuth",
                 column: "OAuthProviderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserOAuth_UserId",
+                table: "UserOAuth",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserTag_TagId",

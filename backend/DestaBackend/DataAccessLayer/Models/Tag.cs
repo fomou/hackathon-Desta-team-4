@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DestaBackend.DataAccessLayer.Models
+namespace DestaNationConnect.DataAccessLayer.Models
 {
     public class Tag
     {

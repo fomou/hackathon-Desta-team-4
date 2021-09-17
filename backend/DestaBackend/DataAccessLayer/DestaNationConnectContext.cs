@@ -1,9 +1,9 @@
-﻿using DestaBackend.DataAccessLayer.Models;
+﻿using DestaNationConnect.DataAccessLayer.Models;
 using log4net;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace DestaBackend.DataAccessLayer
+namespace DestaNationConnect.DataAccessLayer
 {
     public class DestaNationConnectContext : DbContext
     {
@@ -27,8 +27,6 @@ namespace DestaBackend.DataAccessLayer
 
             //all other code goes down here
             //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
-            //modelBuilder.Entity().HasRequired(s => s.Buisness).WithMany().WillCascadeOnDelete(false);
             //TODO: See: https://github.com/aspnet/EntityFrameworkCore/issues/3815
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().Where(e => !e.IsOwned()).SelectMany(e => e.GetForeignKeys()))
             {

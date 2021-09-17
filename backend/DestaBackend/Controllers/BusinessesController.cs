@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DestaBackend.DataAccessLayer;
-using DestaBackend.DataAccessLayer.Models;
+using DestaNationConnect.DataAccessLayer;
+using DestaNationConnect.DataAccessLayer.Models;
 
-namespace DestaBackend.Controllers
+namespace DestaNationConnect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,5 +1,5 @@
-using DestaBackend.DataAccessLayer;
-using DestaBackend.Security;
+using DestaNationConnect.DataAccessLayer;
+using DestaNationConnect.Security;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DestaBackend
+namespace DestaNationConnect
 {
     public class Startup
     {
@@ -52,7 +52,7 @@ namespace DestaBackend
             //swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DestaBackend.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DestaNationConnect.API", Version = "v1" });
             });
 
             services.AddSwaggerGenNewtonsoftSupport();
@@ -118,7 +118,7 @@ namespace DestaBackend
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DestaBackend v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DestaNationConnect v1"));
             }
 
             app.ApplyMigration<DestaNationConnectContext>();

@@ -1,6 +1,6 @@
 using System;
 
-namespace DestaBackend
+namespace DestaNationConnect
 {
     public class WeatherForecast
     {

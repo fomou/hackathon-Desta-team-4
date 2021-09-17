@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DestaBackend.DataAccessLayer.Models
+namespace DestaNationConnect.DataAccessLayer.Models
 {
     public class Business
     {
@@ -21,7 +21,9 @@ namespace DestaBackend.DataAccessLayer.Models
         public string MarketingName { get; set; }
         public string Teasing { get; set; }
         public string AboutUs { get; set; }
+        public string Website { get; set; }
 
+        public virtual User User { get; set; }
         [ForeignKey("PartnerBusinessId")]
         public virtual Business PartnerBusiness { get; set; }
         public virtual IList<PostComment> PostComments { get; set; } = new List<PostComment>();

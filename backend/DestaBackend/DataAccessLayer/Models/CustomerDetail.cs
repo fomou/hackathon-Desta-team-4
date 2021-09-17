@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DestaBackend.DataAccessLayer.Models
+namespace DestaNationConnect.DataAccessLayer.Models
 {
     public class CustomerDetail
     {
@@ -13,6 +13,7 @@ namespace DestaBackend.DataAccessLayer.Models
         [ForeignKey("Customer")]
         [Required]
         public long CustomerId { get; set; }
+        public DateTime BirthDate { get; set; }
         public DateTime CreationDate { get; set; }
 
         public virtual Customer Customer { get; set; }

@@ -5,25 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DestaBackend.DataAccessLayer;
-using DestaBackend.DataAccessLayer.Models;
+using DestaNationConnect.DataAccessLayer;
+using DestaNationConnect.DataAccessLayer.Models;
 
-namespace DestaBackend.Controllers
+namespace DestaNationConnect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class TagController : ControllerBase
     {
-        private readonly DestaContext _context;
+        private readonly DestaNationConnectContext _context;
 
-        public TagController(DestaContext context)
+        public TagController(DestaNationConnectContext context)
         {
             _context = context;
         }
 
         // GET: api/Tag
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tag>>> GetTag()
+        public async Task<ActionResult<IEnumerable<Tag>>> GetAllTags()
         {
             return await _context.Tag.ToListAsync();
         }
@@ -45,7 +45,7 @@ namespace DestaBackend.Controllers
         // PUT: api/Tag/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTag(long id, Tag tag)
+        public async Task<IActionResult> UpdateTag(long id, Tag tag)
         {
             if (id != tag.Id)
             {
@@ -76,7 +76,7 @@ namespace DestaBackend.Controllers
         // POST: api/Tag
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Tag>> PostTag(Tag tag)
+        public async Task<ActionResult<Tag>> CreateTag(Tag tag)
         {
             _context.Tag.Add(tag);
             await _context.SaveChangesAsync();

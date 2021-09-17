@@ -5,20 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DestaBackend.DataAccessLayer;
-using DestaBackend.DataAccessLayer.Models;
+using DestaNationConnect.DataAccessLayer;
+using DestaNationConnect.DataAccessLayer.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace DestaBackend.Controllers
+namespace DestaNationConnect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
     {
-        private readonly DestaContext _context;
+        private readonly DestaNationConnectContext _context;
 
-        public PostController(DestaContext context)
+        public PostController(DestaNationConnectContext context)
         {
             _context = context;
         }

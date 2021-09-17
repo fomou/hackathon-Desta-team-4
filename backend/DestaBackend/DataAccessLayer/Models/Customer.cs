@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DestaBackend.DataAccessLayer.Models
+namespace DestaNationConnect.DataAccessLayer.Models
 {
     public class Customer
     {
@@ -14,7 +14,7 @@ namespace DestaBackend.DataAccessLayer.Models
         [Required]
         public long UserId { get; set; }
         public long Age { get; set; }
-        public bool IsBIPOC { get; set; }
+        public string Occupation { get; set; }
         public DateTime CreationDate { get; set; }
 
         public virtual User User { get; set; }

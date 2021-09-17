@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["DestaBackend.csproj", "."]
-RUN dotnet restore "./DestaBackend.csproj"
+COPY ["DestaNationConnect.csproj", "."]
+RUN dotnet restore "./DestaNationConnect.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "DestaBackend.csproj" -c Release -o /app/build
+RUN dotnet build "DestaNationConnect.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DestaBackend.csproj" -c Release -o /app/publish
+RUN dotnet publish "DestaNationConnect.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DestaBackend.dll"]
+ENTRYPOINT ["dotnet", "DestaNationConnect.dll"]
