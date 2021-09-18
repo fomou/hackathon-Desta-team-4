@@ -42,7 +42,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -57,7 +57,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -211,7 +211,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TagTypeId = table.Column<long>(type: "bigint", nullable: false),
-                    AuthorId = table.Column<long>(type: "bigint", nullable: false),
+                    AuthorId = table.Column<long>(type: "bigint", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -265,7 +265,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     OAuthProviderId = table.Column<long>(type: "bigint", nullable: false),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     EmailIsVerified = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -464,7 +464,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TagId = table.Column<long>(type: "bigint", nullable: false),
                     AnnounceId = table.Column<long>(type: "bigint", nullable: false),
-                    AuthorId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -483,8 +483,8 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AnnounceTag_User_AuthorId",
-                        column: x => x.AuthorId,
+                        name: "FK_AnnounceTag_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
@@ -596,14 +596,14 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 column: "AnnounceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AnnounceTag_AuthorId",
-                table: "AnnounceTag",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AnnounceTag_TagId",
                 table: "AnnounceTag",
                 column: "TagId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnnounceTag_UserId",
+                table: "AnnounceTag",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Business_PartnerBusinessId",
@@ -681,9 +681,30 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 column: "TagTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TagPurpose_Name",
+                table: "TagPurpose",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TagType_Name",
+                table: "TagType",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserFeed_UserId",
                 table: "UserFeed",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserOAuth_Email",
+                table: "UserOAuth",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserOAuth_OAuthProviderId",

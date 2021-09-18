@@ -54,8 +54,11 @@ namespace DestaNationConnect
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DestaNationConnect.API", Version = "v1" });
             });
-
             services.AddSwaggerGenNewtonsoftSupport();
+
+            services.AddCors();
+
+            services.AddSignalR();
 
             services.AddAuthentication(auth =>
             {

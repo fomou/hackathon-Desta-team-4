@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DestaNationConnect.DataAccessLayer.Migrations
 {
     [DbContext(typeof(DestaNationConnectContext))]
-    [Migration("20210917070837_InitialeCreate")]
+    [Migration("20210918062512_InitialeCreate")]
     partial class InitialeCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,22 +95,22 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.Property<long>("AnnounceId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AuthorId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("TagId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnnounceId");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("TagId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("AnnounceTag");
                 });
@@ -458,7 +458,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("AuthorId")
+                    b.Property<long?>("AuthorId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreationDate")
@@ -496,9 +496,13 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("TagPurpose");
                 });
@@ -517,9 +521,13 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("TagType");
                 });
@@ -588,7 +596,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("EmailIsVerified")
                         .HasColumnType("bit");
@@ -603,6 +611,10 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("OAuthProviderId");
 
@@ -693,23 +705,23 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("DestaNationConnect.DataAccessLayer.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("DestaNationConnect.DataAccessLayer.Models.Tag", "Tag")
                         .WithMany()
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("DestaNationConnect.DataAccessLayer.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Announce");
 
-                    b.Navigation("Author");
-
                     b.Navigation("Tag");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.Business", b =>
@@ -883,8 +895,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.HasOne("DestaNationConnect.DataAccessLayer.Models.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DestaNationConnect.DataAccessLayer.Models.TagType", "TagType")
                         .WithMany("Tags")

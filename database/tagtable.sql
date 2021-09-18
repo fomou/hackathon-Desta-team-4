@@ -3,27 +3,28 @@
 
 begin TRANSACTION;
 
-CREATE SCHEMA TagsTable;
-SET search_path to TagsTable;
+INSERT INTO [DestaNationConnect].[dbo].[TagType]  (Name, Description, CreationDate) VALUES 
+	('Why', 'description de what is a tag of type WHY', getdate() ),
+	('What', 'description de what is a tag of WHAT', getdate() );
 
-INSERT INTO TagType VALUES 
- 	(1,'Automotive', 'Descriptive', getdate()),
- 	(2, 'Business Services', 'Descriptive', getdate()),
- 	(3, 'Computers & Electronics', 'Descriptive', getdate()),
- 	(4, 'Construction & Contractors', 'Descriptive', getdate()),
- 	(5, 'Education', 'Descriptive', getdate() ),
- 	(6, 'Entertainment', 'Descriptive', getdate() ),
- 	(7, 'Food & Dining', 'Descriptive', getdate() ),
- 	(8, 'Health & Lifestyle', 'Descriptive', getdate() ),
- 	(9, 'Home & Garden', 'Descriptive', getdate() ),
- 	(10, 'Legal & Financial', 'Descriptive', getdate() );
+INSERT INTO [DestaNationConnect].[dbo].TagPurpose (Name, Description, CreationDate) VALUES
+	('Interest', 'description de what is a tag of type Interest', getdate() ),
+	('Descriptive', 'description de what is a tag of Descriptive', getdate() );
 
-
-INSERT INTO TagPurpose VALUES
-	(01, 'Volunteering', 'Interest', getdate() ),
-	(02, 'Work opportunities', 'Interest', getdate() ),	
-	(03, 'Community Event', 'Interest', getdate() ),
-	(04, 'Promotion / Sale', 'Interest', getdate() );
-
+INSERT INTO [DestaNationConnect].[dbo].Tag (TagTypeId, AuthorId, Name, Description, CreationDate)  VALUES 
+	(1, NULL, 'Volunteering', 'Interest WHY tag about .......', getdate() ),
+	(1, NULL, 'Work opportunities', 'Interest WHY tag about .......', getdate() ),	
+	(1, NULL, 'Community Event', 'Interest WHY tag about .......', getdate() ),
+	(1, NULL, 'Promotion / Sale', 'Interest WHY tag about .......', getdate() ),
+ 	(2, NULL, 'Automotive', 'Descriptive WHAT tag about ...', getdate()),
+ 	(2, NULL, 'Business Services', 'Descriptive WHAT tag about ...', getdate()),
+ 	(2, NULL, 'Computers & Electronics', 'Descriptive WHAT tag about ...', getdate()),
+ 	(2, NULL, 'Construction & Contractors', 'Descriptive WHAT tag about ...', getdate()),
+ 	(2, NULL, 'Education', 'Descriptive WHAT tag about ...', getdate() ),
+ 	(2, NULL, 'Entertainment', 'Descriptive WHAT tag about ...', getdate() ),
+ 	(2, NULL, 'Food & Dining', 'Descriptive WHAT tag about ...', getdate() ),
+ 	(2, NULL, 'Health & Lifestyle', 'Descriptive WHAT tag about ...', getdate() ),
+ 	(2, NULL, 'Home & Garden', 'Descriptive WHAT tag about ...', getdate() ),
+ 	(2, NULL, 'Legal & Financial', 'Descriptive WHAT tag about ...', getdate() );
 
 commit;

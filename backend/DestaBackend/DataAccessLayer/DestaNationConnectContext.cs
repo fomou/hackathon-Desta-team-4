@@ -25,9 +25,13 @@ namespace DestaNationConnect.DataAccessLayer
         {
             base.OnModelCreating(modelBuilder);
 
-            //all other code goes down here
+            //All other code goes down here
             //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            //TODO: See: https://github.com/aspnet/EntityFrameworkCore/issues/3815
+            modelBuilder.Entity<TagType>(entity => {entity.HasIndex(e => e.Name).IsUnique();});
+            modelBuilder.Entity<TagPurpose>(entity => { entity.HasIndex(e => e.Name).IsUnique(); });
+            modelBuilder.Entity<UserOAuth>(entity => { entity.HasIndex(e => e.Email).IsUnique(); });
+
+            //@TODO: See: https://github.com/aspnet/EntityFrameworkCore/issues/3815
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().Where(e => !e.IsOwned()).SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
