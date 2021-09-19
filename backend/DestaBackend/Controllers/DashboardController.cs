@@ -27,14 +27,13 @@ namespace DestaBackend.Controllers
             _context = context;
         }
 
-      
-
-
-        // Post: api/Announce/GetUserDashboardInfos
+        // Post: api/Dashboard/GetUserDashboardInfos 
+        /// <summary>
+        ///  Search from userTag and tagPurposeId of the user that match with the announceTag and show these announces
+        /// </summary>
+        /// <param name="apiInput"></param>
+        /// <returns></returns>
         [HttpPost("GetUserDashboardInfos")]
-
-
-        //Search from userTag and tagPurposeId of the user that match with the announceTag and show these announces
         public async Task<IActionResult> GetUserDashboardInfos([FromBody] ApiInput apiInput)
         {
             var apiResponse = new ApiResponse
@@ -59,16 +58,14 @@ namespace DestaBackend.Controllers
             return StatusCode(statusCode, apiResponse);
         }
 
-
-
-
-
-        // Post: api/Announce/searchAnnounces
+        // Post: api/Dashboard/searchAnnounces
+        /// <summary>
+        /// Show the announces that correspond to what the user wrote in the search bar (included in title or description of the announce)
+        /// </summary>
+        /// <param name="apiInput"></param>
+        /// <returns></returns>
         [HttpPost("SearchAnnounces")]
-
-        //Show the announces that correspond to what the user wrote in the search bar (included in title or description of the announce)
         public async Task<IActionResult> SearchAnnounces([FromBody] ApiInput apiInput)
-
         {
             var apiResponse = new ApiResponse
             {
@@ -78,10 +75,11 @@ namespace DestaBackend.Controllers
 
             try
             {
+                //TODO Algorithme
+                var userId = JsonConvert.DeserializeObject<long>(apiInput.Data.ToString());
 
-                //TODO algorithme               
-          
 
+                statusCode = 200;
             }
             catch (Exception e)
             {
@@ -90,26 +88,5 @@ namespace DestaBackend.Controllers
 
             return StatusCode(statusCode, apiResponse);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

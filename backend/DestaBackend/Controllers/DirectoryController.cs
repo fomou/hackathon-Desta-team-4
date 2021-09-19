@@ -4,6 +4,7 @@ using DestaNationConnect.DTO;
 using log4net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,13 @@ using System.Threading.Tasks;
 
 namespace DestaBackend.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    [ApiController]
     public class DirectoryController : ControllerBase
     {
         //Logger
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(DashboardController));
-
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DirectoryController));
 
         private readonly DestaNationConnectContext _context;
 
@@ -27,11 +27,13 @@ namespace DestaBackend.Controllers
             _context = context;
         }
 
-
         // Post: api/Business/SearchBusinesses
+        /// <summary>
+        /// Show the businesses that match with what the user wrote
+        /// </summary>
+        /// <param name="apiInput"></param>
+        /// <returns></returns>
         [HttpPost("SearchBusinesses")]
-
-        //Show the businesses that match with what the user wrote
         public async Task<IActionResult> SearchBusinesses([FromBody] ApiInput apiInput)
         {
             var apiResponse = new ApiResponse
@@ -42,10 +44,9 @@ namespace DestaBackend.Controllers
 
             try
             {
+                var userId = JsonConvert.DeserializeObject<long>(apiInput.Data.ToString());
 
-                //TODO algorithme               
-
-
+                statusCode = 200;
             }
             catch (Exception e)
             {
@@ -54,9 +55,5 @@ namespace DestaBackend.Controllers
 
             return StatusCode(statusCode, apiResponse);
         }
-
-
-
-   
     }
 }
