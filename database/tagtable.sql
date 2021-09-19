@@ -28,3 +28,21 @@ INSERT INTO [DestaNationConnect].[dbo].Tag (TagTypeId, AuthorId, Name, Descripti
  	(2, NULL, 'Legal & Financial', 'Descriptive WHAT tag about ...', getdate() );
 
 commit;
+
+/*
+DECLARE @sql NVARCHAR(max)=''
+
+SELECT @sql += ' Drop table ' + QUOTENAME(TABLE_SCHEMA) + '.'+ QUOTENAME(TABLE_NAME) + '; '
+FROM   INFORMATION_SCHEMA.TABLES
+WHERE  TABLE_TYPE = 'BASE TABLE'
+
+Exec Sp_executesql @sql
+
+
+Drop table [dbo].[TagType]
+Drop table [dbo].[Post]
+Drop table [dbo].[PostTag]
+Drop table [dbo].[Business]
+Drop table [dbo].[OAuthProvider]
+Drop table [dbo].[User]
+*/

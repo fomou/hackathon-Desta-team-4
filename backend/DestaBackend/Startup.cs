@@ -23,6 +23,8 @@ namespace DestaNationConnect
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_destaNationConnectAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
@@ -47,7 +49,7 @@ namespace DestaNationConnect
 
             services.AddDbContext<DestaNationConnectContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder => { builder.AllowAnyMethod(); }));
 
             // services.AddResponseCaching();
             services.AddControllers();
@@ -132,7 +134,7 @@ namespace DestaNationConnect
             app.UseRouting();
 
             //The call to UseCors must be placed after UseRouting, but before UseAuthorization.
-            app.UseCors();
+            app.UseCors(MyAllowSpecificOrigins);
 
             // app.UseResponseCaching();
             app.UseAuthorization();

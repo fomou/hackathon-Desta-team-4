@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -30,6 +31,13 @@ namespace DestaNationConnect.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
+
+            PasswordHasher<string> passwordHasher = new PasswordHasher<string>();
+
+            var pass1 = passwordHasher.HashPassword("desta",  "Desta-team4");
+            var pass2 = passwordHasher.HashPassword("desta1", "Desta-team4-user1");
+            var pass3 = passwordHasher.HashPassword("desta2", "Desta-team4-user2");
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
