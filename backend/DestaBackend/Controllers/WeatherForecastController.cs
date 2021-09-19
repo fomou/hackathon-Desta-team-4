@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using log4net;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,6 +15,9 @@ namespace DestaNationConnect.Controllers
     [Produces("application/json")]
     public class WeatherForecastController : ControllerBase
     {
+        //Logger
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(WeatherForecastController));
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -38,6 +42,7 @@ namespace DestaNationConnect.Controllers
             var pass2 = passwordHasher.HashPassword("desta1", "Desta-team4-user1");
             var pass3 = passwordHasher.HashPassword("desta2", "Desta-team4-user2");
 
+            Logger.InfoFormat($"desta user logs with  {pass1}");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

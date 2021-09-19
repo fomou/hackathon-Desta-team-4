@@ -42,6 +42,8 @@ namespace DestaNationConnect
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{_env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("loggingconfig.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"loggingconfig.{_env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables()
                 .Build();
 
@@ -49,7 +51,7 @@ namespace DestaNationConnect
 
             services.AddDbContext<DestaNationConnectContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder => { builder.AllowAnyMethod(); }));
+            services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder => { builder.AllowAnyMethod().AllowAnyHeader().AllowAnyMethod(); }));
 
             // services.AddResponseCaching();
             services.AddControllers();
