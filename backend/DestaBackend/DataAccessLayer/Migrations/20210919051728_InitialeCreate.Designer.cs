@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DestaNationConnect.DataAccessLayer.Migrations
 {
     [DbContext(typeof(DestaNationConnectContext))]
-    [Migration("20210918062512_InitialeCreate")]
+    [Migration("20210919051728_InitialeCreate")]
     partial class InitialeCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -480,6 +480,120 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.HasIndex("TagTypeId");
 
                     b.ToTable("Tag");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8503),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Volunteering",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8834),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Work opportunities",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8837),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Community Event",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8839),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Promotion / Sale",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8840),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Automotive",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8842),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Business Services",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8843),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Computers & Electronics",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8844),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Construction & Contractors",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8845),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Education",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8847),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Entertainment",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8848),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Food & Dining",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8850),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Health & Lifestyle",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8851),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Home & Garden",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 14L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8852),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Legal & Financial",
+                            TagTypeId = 2L
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.TagPurpose", b =>
@@ -505,6 +619,22 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("TagPurpose");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 196, DateTimeKind.Utc).AddTicks(7569),
+                            Description = "Description de what is a tag of type Interest",
+                            Name = "Interest"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 196, DateTimeKind.Utc).AddTicks(8086),
+                            Description = "Description de what is a tag of type Descriptive",
+                            Name = "Descriptive"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.TagType", b =>
@@ -530,6 +660,22 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("TagType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(5346),
+                            Description = "Description of what is a WHY tag",
+                            Name = "Why"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(5954),
+                            Description = "Description of what is a WHAT tag ",
+                            Name = "What"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.User", b =>

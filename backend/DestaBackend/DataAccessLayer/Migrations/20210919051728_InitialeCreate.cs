@@ -580,6 +580,45 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "TagPurpose",
+                columns: new[] { "Id", "CreationDate", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2021, 9, 19, 5, 17, 27, 196, DateTimeKind.Utc).AddTicks(7569), "Description de what is a tag of type Interest", "Interest" },
+                    { 2L, new DateTime(2021, 9, 19, 5, 17, 27, 196, DateTimeKind.Utc).AddTicks(8086), "Description de what is a tag of type Descriptive", "Descriptive" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TagType",
+                columns: new[] { "Id", "CreationDate", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(5346), "Description of what is a WHY tag", "Why" },
+                    { 2L, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(5954), "Description of what is a WHAT tag ", "What" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tag",
+                columns: new[] { "Id", "AuthorId", "CreationDate", "Description", "Name", "TagTypeId" },
+                values: new object[,]
+                {
+                    { 1L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8503), "Interest WHY tag about .......", "Volunteering", 1L },
+                    { 2L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8834), "Interest WHY tag about .......", "Work opportunities", 1L },
+                    { 3L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8837), "Interest WHY tag about .......", "Community Event", 1L },
+                    { 4L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8839), "Interest WHY tag about .......", "Promotion / Sale", 1L },
+                    { 5L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8840), "Descriptive WHAT tag about ...", "Automotive", 2L },
+                    { 6L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8842), "Descriptive WHAT tag about ...", "Business Services", 2L },
+                    { 7L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8843), "Descriptive WHAT tag about ...", "Computers & Electronics", 2L },
+                    { 8L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8844), "Descriptive WHAT tag about ...", "Construction & Contractors", 2L },
+                    { 9L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8845), "Descriptive WHAT tag about ...", "Education", 2L },
+                    { 10L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8847), "Descriptive WHAT tag about ...", "Entertainment", 2L },
+                    { 11L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8848), "Descriptive WHAT tag about ...", "Food & Dining", 2L },
+                    { 12L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8850), "Descriptive WHAT tag about ...", "Health & Lifestyle", 2L },
+                    { 13L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8851), "Descriptive WHAT tag about ...", "Home & Garden", 2L },
+                    { 14L, null, new DateTime(2021, 9, 19, 5, 17, 27, 198, DateTimeKind.Utc).AddTicks(8852), "Descriptive WHAT tag about ...", "Legal & Financial", 2L }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",
                 table: "Address",

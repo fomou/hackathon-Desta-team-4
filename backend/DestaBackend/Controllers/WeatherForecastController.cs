@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace DestaNationConnect.Controllers
         }
 
         [HttpGet]
+        [EnableCors] //api/WeatherForecast/get
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

@@ -47,6 +47,9 @@ namespace DestaNationConnect
 
             services.AddDbContext<DestaNationConnectContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddCors();
+
+            // services.AddResponseCaching();
             services.AddControllers();
 
             //swagger
@@ -55,8 +58,6 @@ namespace DestaNationConnect
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DestaNationConnect.API", Version = "v1" });
             });
             services.AddSwaggerGenNewtonsoftSupport();
-
-            services.AddCors();
 
             services.AddSignalR();
 
@@ -130,6 +131,10 @@ namespace DestaNationConnect
 
             app.UseRouting();
 
+            //The call to UseCors must be placed after UseRouting, but before UseAuthorization.
+            app.UseCors();
+
+            // app.UseResponseCaching();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
