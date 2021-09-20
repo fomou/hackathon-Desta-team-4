@@ -15,7 +15,7 @@ Language:
   1) client: TypeScript, HHTML, Bootstrap, SCSS
   2) server: SQL, C#
  
-#Project set up
+# Project set up
 
 git clone https://github.com/fomou/hackathon-Desta-team-4.git
 
