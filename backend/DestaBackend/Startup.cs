@@ -23,6 +23,8 @@ namespace DestaNationConnect
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_destaNationConnectAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
@@ -40,6 +42,8 @@ namespace DestaNationConnect
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{_env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("loggingconfig.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"loggingconfig.{_env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables()
                 .Build();
 
@@ -47,6 +51,9 @@ namespace DestaNationConnect
 
             services.AddDbContext<DestaNationConnectContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder => { builder.AllowAnyMethod().AllowAnyHeader().AllowAnyMethod(); }));
+
+            // services.AddResponseCaching();
             services.AddControllers();
 
             //swagger
@@ -54,8 +61,9 @@ namespace DestaNationConnect
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DestaNationConnect.API", Version = "v1" });
             });
-
             services.AddSwaggerGenNewtonsoftSupport();
+
+            services.AddSignalR();
 
             services.AddAuthentication(auth =>
             {
@@ -127,6 +135,10 @@ namespace DestaNationConnect
 
             app.UseRouting();
 
+            //The call to UseCors must be placed after UseRouting, but before UseAuthorization.
+            app.UseCors(MyAllowSpecificOrigins);
+
+            // app.UseResponseCaching();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -42,7 +42,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -57,7 +57,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -72,7 +72,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 {
                     UserId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccessCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -211,7 +211,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TagTypeId = table.Column<long>(type: "bigint", nullable: false),
-                    AuthorId = table.Column<long>(type: "bigint", nullable: false),
+                    AuthorId = table.Column<long>(type: "bigint", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -265,7 +265,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     OAuthProviderId = table.Column<long>(type: "bigint", nullable: false),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     EmailIsVerified = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -464,7 +464,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TagId = table.Column<long>(type: "bigint", nullable: false),
                     AnnounceId = table.Column<long>(type: "bigint", nullable: false),
-                    AuthorId = table.Column<long>(type: "bigint", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -483,8 +483,8 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AnnounceTag_User_AuthorId",
-                        column: x => x.AuthorId,
+                        name: "FK_AnnounceTag_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
@@ -580,6 +580,69 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "TagPurpose",
+                columns: new[] { "Id", "CreationDate", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2021, 9, 19, 6, 17, 5, 830, DateTimeKind.Utc).AddTicks(1451), "Description de what is a tag of type Interest", "Interest" },
+                    { 2L, new DateTime(2021, 9, 19, 6, 17, 5, 830, DateTimeKind.Utc).AddTicks(1848), "Description de what is a tag of type Descriptive", "Descriptive" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TagType",
+                columns: new[] { "Id", "CreationDate", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2021, 9, 19, 6, 17, 5, 831, DateTimeKind.Utc).AddTicks(7001), "Description of what is a WHY tag", "Why" },
+                    { 2L, new DateTime(2021, 9, 19, 6, 17, 5, 831, DateTimeKind.Utc).AddTicks(7455), "Description of what is a WHAT tag ", "What" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserId", "AccessCode", "CreationDate", "IsBIPOC", "Password", "Username" },
+                values: new object[,]
+                {
+                    { 1L, null, new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(1870), false, "AQAAAAEAACcQAAAAEJd5hlfuADJi0QH7JyTId8PIO3ZnptPAop7RHuPnkoyoFFyaeV24acZFyvieWdza/w==", "destau1" },
+                    { 2L, null, new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(2467), false, "AQAAAAEAACcQAAAAEP1NVu7SOsNsXyxWpNS0ueruUmoO5HwXUGZg8aqTrnVbYHtCcWtcyenagpa83XSrCg==", "destab1" },
+                    { 3L, null, new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(2474), false, "AQAAAAEAACcQAAAAEKCFNBRODGjLqX9MzlfqFwroCTkXLCm9jPzTPK3+nB8zRP8G710N0V/vxYcqH0KZ1Q==", "destab2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Business",
+                columns: new[] { "UserId", "AboutUs", "CreationDate", "MarketingName", "PartnerBusinessId", "PartnerBusinessStartDate", "Teasing", "Website" },
+                values: new object[,]
+                {
+                    { 3L, "We sell food and drink", new DateTime(2021, 9, 19, 6, 17, 5, 834, DateTimeKind.Utc).AddTicks(2108), "Hot Africa", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "https://destabyn.org/" },
+                    { 2L, "We are the best", new DateTime(2021, 9, 19, 6, 17, 5, 834, DateTimeKind.Utc).AddTicks(1605), "DestaNation", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "https://destabyn.org/" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Customer",
+                columns: new[] { "UserId", "Age", "CreationDate", "Occupation" },
+                values: new object[] { 1L, 26L, new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(6408), "Sofware developper" });
+
+            migrationBuilder.InsertData(
+                table: "Tag",
+                columns: new[] { "Id", "AuthorId", "CreationDate", "Description", "Name", "TagTypeId" },
+                values: new object[,]
+                {
+                    { 14L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(897), "Descriptive WHAT tag about ...", "Legal & Financial", 2L },
+                    { 13L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(895), "Descriptive WHAT tag about ...", "Home & Garden", 2L },
+                    { 12L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(894), "Descriptive WHAT tag about ...", "Health & Lifestyle", 2L },
+                    { 11L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(892), "Descriptive WHAT tag about ...", "Food & Dining", 2L },
+                    { 10L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(889), "Descriptive WHAT tag about ...", "Entertainment", 2L },
+                    { 9L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(887), "Descriptive WHAT tag about ...", "Education", 2L },
+                    { 7L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(883), "Descriptive WHAT tag about ...", "Computers & Electronics", 2L },
+                    { 6L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(881), "Descriptive WHAT tag about ...", "Business Services", 2L },
+                    { 5L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(879), "Descriptive WHAT tag about ...", "Automotive", 2L },
+                    { 4L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(878), "Interest WHY tag about .......", "Promotion / Sale", 1L },
+                    { 3L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(876), "Interest WHY tag about .......", "Community Event", 1L },
+                    { 2L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(870), "Interest WHY tag about .......", "Work opportunities", 1L },
+                    { 8L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(885), "Descriptive WHAT tag about ...", "Construction & Contractors", 2L },
+                    { 1L, null, new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(347), "Interest WHY tag about .......", "Volunteering", 1L }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",
                 table: "Address",
@@ -596,14 +659,14 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 column: "AnnounceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AnnounceTag_AuthorId",
-                table: "AnnounceTag",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AnnounceTag_TagId",
                 table: "AnnounceTag",
                 column: "TagId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnnounceTag_UserId",
+                table: "AnnounceTag",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Business_PartnerBusinessId",
@@ -681,9 +744,37 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                 column: "TagTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TagPurpose_Name",
+                table: "TagPurpose",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TagType_Name",
+                table: "TagType",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Username",
+                table: "User",
+                column: "Username",
+                unique: true,
+                filter: "[Username] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserFeed_UserId",
                 table: "UserFeed",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserOAuth_Email",
+                table: "UserOAuth",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserOAuth_OAuthProviderId",

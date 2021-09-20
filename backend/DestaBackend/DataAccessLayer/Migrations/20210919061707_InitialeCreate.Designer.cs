@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DestaNationConnect.DataAccessLayer.Migrations
 {
     [DbContext(typeof(DestaNationConnectContext))]
-    [Migration("20210917070837_InitialeCreate")]
+    [Migration("20210919061707_InitialeCreate")]
     partial class InitialeCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,22 +95,22 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.Property<long>("AnnounceId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AuthorId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("TagId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnnounceId");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("TagId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("AnnounceTag");
                 });
@@ -146,6 +146,26 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.HasIndex("PartnerBusinessId");
 
                     b.ToTable("Business");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 2L,
+                            AboutUs = "We are the best",
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 834, DateTimeKind.Utc).AddTicks(1605),
+                            MarketingName = "DestaNation",
+                            PartnerBusinessStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Website = "https://destabyn.org/"
+                        },
+                        new
+                        {
+                            UserId = 3L,
+                            AboutUs = "We sell food and drink",
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 834, DateTimeKind.Utc).AddTicks(2108),
+                            MarketingName = "Hot Africa",
+                            PartnerBusinessStartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Website = "https://destabyn.org/"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.BusinessDetail", b =>
@@ -242,6 +262,15 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Customer");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1L,
+                            Age = 26L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(6408),
+                            Occupation = "Sofware developper"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.CustomerDetail", b =>
@@ -458,7 +487,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("AuthorId")
+                    b.Property<long?>("AuthorId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreationDate")
@@ -480,6 +509,120 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.HasIndex("TagTypeId");
 
                     b.ToTable("Tag");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(347),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Volunteering",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(870),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Work opportunities",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(876),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Community Event",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(878),
+                            Description = "Interest WHY tag about .......",
+                            Name = "Promotion / Sale",
+                            TagTypeId = 1L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(879),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Automotive",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(881),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Business Services",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(883),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Computers & Electronics",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(885),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Construction & Contractors",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(887),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Education",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(889),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Entertainment",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(892),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Food & Dining",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(894),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Health & Lifestyle",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(895),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Home & Garden",
+                            TagTypeId = 2L
+                        },
+                        new
+                        {
+                            Id = 14L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 832, DateTimeKind.Utc).AddTicks(897),
+                            Description = "Descriptive WHAT tag about ...",
+                            Name = "Legal & Financial",
+                            TagTypeId = 2L
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.TagPurpose", b =>
@@ -496,11 +639,31 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
                     b.ToTable("TagPurpose");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 830, DateTimeKind.Utc).AddTicks(1451),
+                            Description = "Description de what is a tag of type Interest",
+                            Name = "Interest"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 830, DateTimeKind.Utc).AddTicks(1848),
+                            Description = "Description de what is a tag of type Descriptive",
+                            Name = "Descriptive"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.TagType", b =>
@@ -517,11 +680,31 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
                     b.ToTable("TagType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 831, DateTimeKind.Utc).AddTicks(7001),
+                            Description = "Description of what is a WHY tag",
+                            Name = "Why"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 831, DateTimeKind.Utc).AddTicks(7455),
+                            Description = "Description of what is a WHAT tag ",
+                            Name = "What"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.User", b =>
@@ -544,11 +727,41 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("Username")
+                        .IsUnique()
+                        .HasFilter("[Username] IS NOT NULL");
+
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(1870),
+                            IsBIPOC = false,
+                            Password = "AQAAAAEAACcQAAAAEJd5hlfuADJi0QH7JyTId8PIO3ZnptPAop7RHuPnkoyoFFyaeV24acZFyvieWdza/w==",
+                            Username = "destau1"
+                        },
+                        new
+                        {
+                            UserId = 2L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(2467),
+                            IsBIPOC = false,
+                            Password = "AQAAAAEAACcQAAAAEP1NVu7SOsNsXyxWpNS0ueruUmoO5HwXUGZg8aqTrnVbYHtCcWtcyenagpa83XSrCg==",
+                            Username = "destab1"
+                        },
+                        new
+                        {
+                            UserId = 3L,
+                            CreationDate = new DateTime(2021, 9, 19, 6, 17, 5, 833, DateTimeKind.Utc).AddTicks(2474),
+                            IsBIPOC = false,
+                            Password = "AQAAAAEAACcQAAAAEKCFNBRODGjLqX9MzlfqFwroCTkXLCm9jPzTPK3+nB8zRP8G710N0V/vxYcqH0KZ1Q==",
+                            Username = "destab2"
+                        });
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.UserFeed", b =>
@@ -588,7 +801,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("EmailIsVerified")
                         .HasColumnType("bit");
@@ -603,6 +816,10 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("OAuthProviderId");
 
@@ -693,23 +910,23 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("DestaNationConnect.DataAccessLayer.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("DestaNationConnect.DataAccessLayer.Models.Tag", "Tag")
                         .WithMany()
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("DestaNationConnect.DataAccessLayer.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Announce");
 
-                    b.Navigation("Author");
-
                     b.Navigation("Tag");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DestaNationConnect.DataAccessLayer.Models.Business", b =>
@@ -883,8 +1100,7 @@ namespace DestaNationConnect.DataAccessLayer.Migrations
                     b.HasOne("DestaNationConnect.DataAccessLayer.Models.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DestaNationConnect.DataAccessLayer.Models.TagType", "TagType")
                         .WithMany("Tags")

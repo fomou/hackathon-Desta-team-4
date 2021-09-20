@@ -1,0 +1,30 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.RollingFile" ],
+
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Microsoft": "Warning",
+        "MyApp.Something.Tricky": "Verbose"
+      }
+    },
+
+    "WriteTo": [
+      {
+        "Name": "RollingFile",
+        "Args": {
+          "pathFormat": "__Serilog.WriteTo.pathFormat__\\DestaNationConnect.WebApi-{Date}.log",
+          "retainedFileCountLimit": "__Serilog.WriteTo.retainedFileCountLimit__",
+          "outputTemplate": "{MachineName} {ThreadId} {Timestamp:HH:mm:ss:ms} [{Level:u3}] {Message}{NewLine}{Exception}"
+        }
+      }
+    ],
+
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+
+    "Properties": {
+      "Application": "DestaNationConnect"
+    }
+  }
+}
