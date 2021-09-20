@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { FirebaseService } from './firebase.service';
-import { Observable,BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { logging } from 'protractor';
+import { CommunicationService } from './communication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,11 @@ export class AppComponent implements OnInit {
 
   title = 'desta-Project';
   login: Observable<boolean>;
-  isSignIn = false;
-  constructor(private firebaseService: FirebaseService) {
+  isSignIn = true;
+  displayChat = false;
+  constructor(private firebaseService: FirebaseService, private communicationService: CommunicationService) {
     this.login = this.firebaseService.isSignin;
-    this.firebaseService.subject.asObservable().subscribe((signedIn: boolean) => {
+    this.communicationService.isSignedIn.asObservable().subscribe((signedIn: boolean) => {
       this.isSignIn = signedIn;
       console.log(this.isSignIn);
     });

@@ -1,21 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 
-const URL = 'localhost:3000';
+const URL = 'https://evening-ocean-30323.herokuapp.com/https://destanationconnect.azurewebsites.net/';
+//const URL = 'https://destanationconnect.azurewebsites.net/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CommunicationService {
 
-  constructor(private htpp: HttpClient) { }
+  isSignedIn= new BehaviorSubject<boolean>(false);
+  currentUser = new BehaviorSubject<any>(undefined);
+  constructor(private htpp: HttpClient) {
+    this.currentUser = new BehaviorSubject<any>(undefined);
+    this.isSignedIn = new BehaviorSubject<boolean>(false);
+   }
 
   getAllUsers(): Observable<any>{
-    return this.htpp.get(URL + '/uses');
+    return this.htpp.get(URL + 'api/tag');
 
   }
 
   login(user: any): Observable<any>{
-    return this.htpp.post(URL + 'api/Account/Login', user );
+    return this.htpp.post<any>(URL + 'api/account/login', user);
   }
+
+  getCurrentUser(): any{
+    return this.currentUser.getValue();
+  }
+
+
+
 }

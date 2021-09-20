@@ -5,6 +5,7 @@ import { LogginComponent } from './loggin/loggin.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DirectoryComponent } from './directory/directory.component';
+import { ForumComponent } from './forum/forum.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,9 @@ const routes: Routes = [
   {
     path:'directory', component:DirectoryComponent, pathMatch:'full'
   },
+  {
+    path:'forum', component:ForumComponent
+  }
 ];
 
 @NgModule({

@@ -14,6 +14,9 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DirectoryComponent } from './directory/directory.component';
+import { ChatComponent } from './chat/chat.component';
+import { ForumComponent } from './forum/forum.component';
+import { EventsComponent } from './events/events.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { DirectoryComponent } from './directory/directory.component';
     FooterComponent,
     SignupComponent,
     ProfileComponent,
-    DirectoryComponent
+    DirectoryComponent,
+    ChatComponent,
+    ForumComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,7 @@ import { DirectoryComponent } from './directory/directory.component';
    //   apiKey: ''
    // })
     AngularFireModule.initializeApp(environment.firebase),
-    
+
     AngularFireDatabaseModule,
     HttpClientModule,
   ],

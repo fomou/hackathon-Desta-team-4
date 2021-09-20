@@ -1,0 +1,9 @@
+
+
+{
+  "/api/*": {
+      "target": "https://destanationconnect20210918220301.azurewebsites.net/",
+      "secure": false,
+      "logLevel": "debug"
+  }
+}
